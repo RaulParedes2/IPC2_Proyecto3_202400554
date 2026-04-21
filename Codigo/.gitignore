@@ -1,0 +1,132 @@
+# .NET Core build outputs
+/bin/
+/obj/
+/out/
+/publish/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.usersecrets
+
+# Build results
+*.dll
+*.exe
+*.exp
+*.ilk
+*.log
+*.lib
+*.lst
+*.pdb
+*.tmp
+*.tmp_proj
+*.vspscc
+*.vssscc
+*.sbr
+*.laccdb
+*.orig
+*.pidb
+*.scc
+*.cache
+*.nupkg
+*.snupkg
+
+# Visual Studio cache files
+.vs/
+Project.lock.json
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# ASP.NET Core
+appsettings.Development.json
+appsettings.Production.json
+*.csproj.user
+launchSettings.json
+launchSettings.http.json
+
+# Node.js (for frontend tools if any)
+/node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+
+# Webpack / Parcel / Vite
+/dist/
+/.cache/
+/.parcel-cache/
+
+# IDE specific
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.vscode/
+*.code-workspace
+
+# Database files
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+*.coveragexml
+
+# Logs
+*.log
+logs/
+_logs/
+
+# Backup files
+*.bak
+*.backup
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Mac specific
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux specific
+.directory
+
+# Publish profiles
+*.pubxml.user
+*.pubxml
+
+# Coverage reports
+coverage/
+*.coverage
+*.coverlet
+
+# SonarCloud/SonarQube
+.sonarqube/
+.sonar/
+
+# Certificates
+*.pfx
+*.p12
+*.cer
+
+# Generated documentation
+docs/api/
+*.xml
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Data files (opcional - si quieres mantener el inventario.json en el repo, comenta esta línea)
+# InventarioAPI/Data/inventario.json
