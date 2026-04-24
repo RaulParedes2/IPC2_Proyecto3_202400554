@@ -4,24 +4,21 @@ namespace ITGSA.API.Helpers
 {
     public static class RegexHelper
     {
-        // NIT de texto sucio (ej: "NIT: 123456-K" o "1234567890123-1")
-        public static string ExtractNIT(string texto)
+        // Extraer NIT de texto sucio (ej: "NIT: 123456-K" o "1234567890123-1")
+        public static string ExtraerNIT(string texto)
         {
-            if (string.IsNullOrEmpty(texto))
-                return string.Empty;
-
+            if (string.IsNullOrWhiteSpace(texto)) return string.Empty;
+            
             var patron = @"\b(\d{4,15}[-\s]?[Kk0-9]?)\b";
             var match = Regex.Match(texto, patron);
-            return match.Success ? match.Groups[1].Value : string.Empty;
+            return match.Success ? match.Groups[1].Value.Trim() : texto.Trim();
         }
 
         // Extraer fecha en formato dd/mm/yyyy (ignorando texto extra)
         public static string ExtraerFecha(string texto)
         {
-            if (string.IsNullOrEmpty(texto))
-                return string.Empty;
-
-            /*var patron = @"\b(0?[1-9]|[12][0-9]|3[01])/(0?[1-9]|1[0-2])/\d{4}\b";*/
+            if (string.IsNullOrWhiteSpace(texto)) return string.Empty;
+            
             var patron = @"(\d{2})[/-](\d{2})[/-](\d{4})";
             var match = Regex.Match(texto, patron);
             if (match.Success)
@@ -32,12 +29,10 @@ namespace ITGSA.API.Helpers
         }
 
         // Extraer valor numérico de texto (ej: "Q 100.00" o "100.00")
-        public static decimal ExtrerValor(string texto)
+        public static decimal ExtraerValor(string texto)
         {
-            if (string.IsNullOrEmpty(texto))
-                return 0;
-
-            /*var patron = @"\bQ?\s?(\d{1,3}(?:,\d{3})*(?:\.\d{2})?)\b";*/
+            if (string.IsNullOrWhiteSpace(texto)) return 0;
+            
             var patron = @"\d+(?:[.,]\d+)?";
             var match = Regex.Match(texto, patron);
             if (match.Success)
@@ -48,7 +43,5 @@ namespace ITGSA.API.Helpers
             }
             return 0;
         }
-
-        
     }
 }

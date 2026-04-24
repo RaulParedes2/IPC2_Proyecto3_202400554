@@ -52,6 +52,10 @@
               "target": "Package",
               "version": "[13.0.4, )"
             },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[10.1.7, )"
+            },
             "System.Text.RegularExpressions": {
               "target": "Package",
               "version": "[4.3.1, )"
