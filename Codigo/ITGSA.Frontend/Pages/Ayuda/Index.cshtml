@@ -1,0 +1,90 @@
+@page
+@model ITGSA.Frontend.Pages.Ayuda.IndexModel
+@{
+    ViewData["Title"] = "Ayuda - Información del Estudiante";
+}
+
+<div class="container mt-4">
+    <h2>Información del Proyecto</h2>
+    <hr />
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>Datos del Estudiante</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item"><strong>Nombre:</strong> Daniel Predes</li>
+                        <li class="list-group-item"><strong>Carnet:</strong> 202400554</li>
+                        <li class="list-group-item"><strong>Curso:</strong> Introducción a la Programación y Computación 2</li>
+                        <li class="list-group-item"><strong>Proyecto:</strong> #3 - API de Facturación ITGSA</li>
+                        <li class="list-group-item"><strong>Fecha:</strong> Abril 2026</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>Documentación del Sistema</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Funcionalidades:</h6>
+                    <ul>
+                        <li>Resetear datos del sistema</li>
+                        <li>Cargar configuración (clientes y bancos) desde XML</li>
+                        <li>Cargar transacciones (facturas y pagos) desde XML</li>
+                        <li>Consultar estado de cuenta por cliente</li>
+                        <li>Ver resumen de ingresos con gráfica</li>
+                        <li>Generar reportes en PDF (usando impresión del navegador)</li>
+                    </ul>
+                    <hr />
+                    <h6>Tecnologías utilizadas:</h6>
+                    <ul>
+                        <li>Backend: .NET 10.0 Web API</li>
+                        <li>Frontend: ASP.NET Core Razor Pages</li>
+                        <li>Almacenamiento: Archivos XML</li>
+                        <li>Lenguaje: C# con POO</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h5>Endpoints de la API</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Método</th>
+                                <th>Endpoint</th>
+                                <th>Descripción</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>GET</td><td>/System/limpiarDatos</td><td>Resetear sistema</td></tr>
+                            <tr><td>POST</td><td>/System/grabarConfiguracion</td><td>Cargar config.xml</td></tr>
+                            <tr><td>POST</td><td>/System/grabarTransaccion</td><td>Cargar transac.xml</td></tr>
+                            <tr><td>GET</td><td>/System/devolverEstadoCuenta?nit=XXX</td><td>Estado de cuenta</td></tr>
+                            <tr><td>GET</td><td>/System/devolverResumenPagos?mes=X&anio=Y</td><td>Resumen de ingresos</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-12 text-center">
+            <a href="/" class="btn btn-primary">Volver al Inicio</a>
+        </div>
+    </div>
+</div>

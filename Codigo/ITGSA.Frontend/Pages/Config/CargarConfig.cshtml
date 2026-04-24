@@ -1,0 +1,43 @@
+@page
+@model ITGSA.Frontend.Pages.Config.CargarConfigModel
+@{
+    ViewData["Title"] = "Cargar Configuración";
+}
+
+<div class="container mt-4">
+    <h2>Cargar Archivo de Configuración</h2>
+    <hr />
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="xmlFile" class="form-label">Seleccione archivo config.xml:</label>
+                    <input type="file" class="form-control" id="xmlFile" name="XmlFile" accept=".xml" required />
+                </div>
+                <button type="submit" class="btn btn-primary">Cargar Archivo</button>
+                <a href="/" class="btn btn-secondary">Volver</a>
+            </form>
+        </div>
+    </div>
+
+    @if (ViewData["Resultado"] != null)
+    {
+        <div class="mt-4">
+            <div class="alert alert-info">
+                <h5>Respuesta del servidor:</h5>
+                <pre class="mb-0">@ViewData["Resultado"]</pre>
+            </div>
+        </div>
+    }
+
+    @if (ViewData["Error"] != null)
+    {
+        <div class="mt-4">
+            <div class="alert alert-danger">
+                <h5>Error:</h5>
+                <p>@ViewData["Error"]</p>
+            </div>
+        </div>
+    }
+</div>

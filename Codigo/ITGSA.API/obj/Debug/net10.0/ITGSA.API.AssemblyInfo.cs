@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITGSA.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e08402aed140bac4f7d52a2f03ab2ea6bad72337")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93fdc209616fe83a34ee3cc4da15069a27ee246e")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITGSA.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITGSA.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,0 +1,86 @@
+@page
+@model ITGSA.Frontend.Pages.Consultas.EstadoCuentaModel
+@{
+    ViewData["Title"] = "Estado de Cuenta";
+}
+
+<div class="container mt-4">
+    <h2>Consultar Estado de Cuenta</h2>
+    <hr />
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-6">
+                    <label for="nit" class="form-label">NIT del Cliente:</label>
+                    <input type="text" class="form-control" id="nit" name="nit" 
+                           placeholder="Ej: 123456-K" value="@Model.NIT">
+                </div>
+                <div class="col-md-6 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary me-2">Consultar</button>
+                    <a href="/Consultas/EstadoCuenta?todos=true" class="btn btn-success">Ver Todos los Clientes</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Resultado != null)
+    {
+        if (Model.Error != null)
+        {
+            <div class="alert alert-danger">
+                @Model.Error
+            </div>
+        }
+        else
+        {
+            <div class="card">
+                <div class="card-header bg-info text-white">
+                    <h4>Cliente: @Model.Resultado.Nombre (@Model.Resultado.NIT)</h4>
+                </div>
+                <div class="card-body">
+                    <h5 class="text-end">Saldo Actual: <strong class="@(Model.Resultado.SaldoActual < 0 ? "text-danger" : "text-success")">
+                        Q. @Model.Resultado.SaldoActual.ToString("N2")</strong>
+                    </h5>
+                    <hr />
+                    <h5>Transacciones</h5>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Descripción</th>
+                                    <th class="text-end">Cargo</th>
+                                    <th class="text-end">Abono</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var t in Model.Resultado.Transacciones)
+                                {
+                                    <tr>
+                                        <td>@t.Fecha</td>
+                                        <td>@t.Descripcion</td>
+                                        <td class="text-end">@(t.Cargo > 0 ? $"Q. {t.Cargo:N2}" : "-")</td>
+                                        <td class="text-end">@(t.Abono > 0 ? $"Q. {t.Abono:N2}" : "-")</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a href="/Consultas/EstadoCuenta?todos=true" class="btn btn-sm btn-secondary">Volver a todos</a>
+                    <button id="btnPdf" class="btn btn-sm btn-danger float-end">Generar PDF</button>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('btnPdf')?.addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+}

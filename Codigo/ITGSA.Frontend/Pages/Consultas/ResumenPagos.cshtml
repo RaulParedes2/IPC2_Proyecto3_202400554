@@ -1,0 +1,134 @@
+@page
+@model ITGSA.Frontend.Pages.Consultas.ResumenPagosModel
+@{
+    ViewData["Title"] = "Resumen de Ingresos";
+}
+
+<div class="container mt-4">
+    <h2>Resumen de Ingresos</h2>
+    <hr />
+
+    <div class="card mb-4">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-4">
+                    <label for="mes" class="form-label">Mes:</label>
+                    <select class="form-control" id="mes" name="mes">
+                        @for (int i = 1; i <= 12; i++)
+                        {
+                            var mesNombre = new DateTime(2024, i, 1).ToString("MMMM");
+                            <option value="@i" selected="@(Model.Mes == i)">@mesNombre</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="anio" class="form-label">Año:</label>
+                    <select class="form-control" id="anio" name="anio">
+                        @for (int i = 2023; i <= DateTime.Now.Year; i++)
+                        {
+                            <option value="@i" selected="@(Model.Anio == i)">@i</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex align-items-end">
+                    <button type="submit" class="btn btn-primary">Consultar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    @if (Model.Ingresos != null && Model.Ingresos.Any())
+    {
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4>Ingresos - @Model.MesElegido</h4>
+            </div>
+            <div class="card-body">
+                <canvas id="ingresosChart" width="400" height="200"></canvas>
+                <hr />
+                <div class="table-responsive mt-4">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Mes</th>
+                                <th class="text-end">Total Ingresos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var ingreso in Model.Ingresos)
+                            {
+                                <tr>
+                                    <td>@ingreso.Mes</td>
+                                    <td class="text-end">Q. @ingreso.Total.ToString("N2")</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button id="btnPdf" class="btn btn-danger">Generar PDF</button>
+            </div>
+        </div>
+    }
+    else if (Model.Mes > 0)
+    {
+        <div class="alert alert-warning">
+            No hay datos de ingresos para el período seleccionado.
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        @if (Model.Ingresos != null && Model.Ingresos.Any())
+        {
+            <text>
+                const ctx = document.getElementById('ingresosChart').getContext('2d');
+                const labels = @Html.Raw(Json.Serialize(Model.Ingresos.Select(i => i.Mes)));
+                const datos = @Html.Raw(Json.Serialize(Model.Ingresos.Select(i => i.Total)));
+                
+                new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Ingresos (Q)',
+                            data: datos,
+                            backgroundColor: 'rgba(40, 167, 69, 0.7)',
+                            borderColor: 'rgba(40, 167, 69, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                ticks: {
+                                    callback: function(value) {
+                                        return 'Q. ' + value.toFixed(2);
+                                    }
+                                }
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        return 'Q. ' + context.raw.toFixed(2);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            </text>
+        }
+
+        document.getElementById('btnPdf')?.addEventListener('click', function() {
+            window.print();
+        });
+    </script>
+}

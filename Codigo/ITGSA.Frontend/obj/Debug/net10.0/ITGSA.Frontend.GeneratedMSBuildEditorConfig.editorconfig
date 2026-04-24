@@ -22,6 +22,22 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 10.0
 build_property.EnableCodeStyleSeverity = 
 
+[C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Ayuda/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXl1ZGFcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Config/CargarConfig.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uZmlnXENhcmdhckNvbmZpZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Consultas/EstadoCuenta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXEVzdGFkb0N1ZW50YS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Consultas/ResumenPagos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29uc3VsdGFzXFJlc3VtZW5QYWdvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -36,6 +52,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/Transacciones/CargarTransac.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVHJhbnNhY2Npb25lc1xDYXJnYXJUcmFuc2FjLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/Daniel Predes/Desktop/IPC2_Proyecto3_202400554/Codigo/ITGSA.Frontend/Pages/_ViewImports.cshtml]
