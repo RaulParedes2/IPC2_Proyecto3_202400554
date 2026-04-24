@@ -1,10 +1,115 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "ITGSA - Sistema de Facturación";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <div class="text-center">
+        <h1 class="display-4">Industria Típica Guatemalteca, S.A.</h1>
+        <p class="lead">Sistema de gestión de facturación y pagos</p>
+        <hr />
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">🔄 Resetear Datos</h5>
+                    <p class="card-text">Reiniciar el sistema a su estado inicial</p>
+                    <button id="btnReset" class="btn btn-danger">Resetear Sistema</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">📁 Cargar Configuración</h5>
+                    <p class="card-text">Cargar archivo config.xml (clientes y bancos)</p>
+                    <a href="/Config/CargarConfig" class="btn btn-primary">Cargar Configuración</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">💰 Cargar Transacciones</h5>
+                    <p class="card-text">Cargar archivo transac.xml (facturas y pagos)</p>
+                    <a href="/Transacciones/CargarTransac" class="btn btn-primary">Cargar Transacciones</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">📊 Estado de Cuenta</h5>
+                    <p class="card-text">Consultar saldo y transacciones por cliente</p>
+                    <a href="/Consultas/EstadoCuenta" class="btn btn-success">Consultar</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6 mb-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">📈 Resumen de Ingresos</h5>
+                    <p class="card-text">Ver ingresos por mes (gráfica)</p>
+                    <a href="/Consultas/ResumenPagos" class="btn btn-success">Ver Resumen</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">❓ Ayuda</h5>
+                    <p class="card-text">Información del estudiante y documentación</p>
+                    <a href="/Ayuda" class="btn btn-info">Ver Ayuda</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Modal para mostrar resultados -->
+<div class="modal fade" id="resultModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Resultado</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <pre id="resultContent"></pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.getElementById('btnReset').addEventListener('click', async function() {
+            if (confirm('¿Está seguro de resetear todos los datos? Esta acción no se puede deshacer.')) {
+                try {
+                    const response = await fetch('https://localhost:7000/System/limpiarDatos');
+                    const data = await response.text();
+                    document.getElementById('resultContent').textContent = data;
+                    new bootstrap.Modal(document.getElementById('resultModal')).show();
+                } catch (error) {
+                    document.getElementById('resultContent').textContent = 'Error: ' + error.message;
+                    new bootstrap.Modal(document.getElementById('resultModal')).show();
+                }
+            }
+        });
+    </script>
+}

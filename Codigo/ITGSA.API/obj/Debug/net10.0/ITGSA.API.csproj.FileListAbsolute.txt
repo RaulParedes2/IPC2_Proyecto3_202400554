@@ -8,6 +8,10 @@ C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Deb
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\ITGSA.API.pdb
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\obj\Debug\net10.0\ITGSA.API.csproj.AssemblyReference.cache
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\obj\Debug\net10.0\rpswa.dswa.cache.json
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.API\obj\Debug\net10.0\ITGSA.API.GeneratedMSBuildEditorConfig.editorconfig

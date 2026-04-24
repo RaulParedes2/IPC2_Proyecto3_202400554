@@ -96,3 +96,6 @@ C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\ob
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\obj\Debug\net10.0\ITGSA.Frontend.pdb
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\obj\Debug\net10.0\ITGSA.Frontend.genruntimeconfig.cache
 C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\obj\Debug\net10.0\ref\ITGSA.Frontend.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\obj\Debug\net10.0\ITGSA.Frontend.csproj.AssemblyReference.cache
+C:\Users\Daniel Predes\Desktop\IPC2_Proyecto3_202400554\Codigo\ITGSA.Frontend\obj\Debug\net10.0\ITGSA.Fr.D279BB40.Up2Date
