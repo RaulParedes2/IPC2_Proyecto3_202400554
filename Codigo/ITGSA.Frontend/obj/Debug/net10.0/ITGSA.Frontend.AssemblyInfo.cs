@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ITGSA.Frontend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+93fdc209616fe83a34ee3cc4da15069a27ee246e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+716ebdb35577e7ae8363ea3c35239bd6b059d65b")]
 [assembly: System.Reflection.AssemblyProductAttribute("ITGSA.Frontend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ITGSA.Frontend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
