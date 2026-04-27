@@ -1,132 +1,113 @@
-# .NET Core build outputs
-/bin/
-/obj/
-/out/
-/publish/
+# ===================
+# .NET / C# específico
+# ===================
 
-# User-specific files
-*.rsuser
-*.suo
-*.user
-*.userosscache
-*.usersecrets
-
-# Build results
+## Archivos compilados
+bin/
+obj/
 *.dll
 *.exe
-*.exp
-*.ilk
-*.log
-*.lib
-*.lst
 *.pdb
-*.tmp
-*.tmp_proj
-*.vspscc
-*.vssscc
-*.sbr
-*.laccdb
-*.orig
-*.pidb
-*.scc
+*.user
+*.userprefs
+*.mdb
+
+## Archivos de caché y temp
 *.cache
+*.tmp
+*.temp
+**/Temp/
+**/tmp/
+
+## Archivos de logs
+*.log
+*.logs
+**/Logs/
+
+## Archivos de configuración local
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+**/Properties/launchSettings.json
+
+## Archivos de Visual Studio
+.vs/
+*.csproj.user
+*.suo
+*.sln.ide
+*.sln.docstates
+
+## Archivos de VSCode
+.vscode/
+*.code-workspace
+.history/
+
+## Archivos de respaldo
+*~
+*.bak
+*.backup
+*.orig
+
+# ===================
+# Bases de datos XML (DATA del proyecto)
+# ===================
+**/Data/*.xml
+!**/Data/.gitkeep
+
+# ===================
+# Archivos de entrada (ejemplos)
+# ===================
+*.config.xml
+*.transac.xml
+config.xml
+transac.xml
+!**/Ejemplos/
+
+# ===================
+# Reportes y PDFs generados
+# ===================
+*.pdf
+*.png
+*.jpg
+*.jpeg
+**/Reports/
+**/PDFs/
+
+# ===================
+# Archivos del sistema
+# ===================
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+*.sdb
+
+# ===================
+# Archivos de publicación
+# ===================
+publish/
+**/publish/
 *.nupkg
 *.snupkg
 
-# Visual Studio cache files
-.vs/
-Project.lock.json
-project.lock.json
-project.fragment.lock.json
-artifacts/
+# ===================
+# Dependencias (no necesarias en el repo)
+# ===================
+packages/
+**/packages/
 
-# ASP.NET Core
-appsettings.Development.json
-appsettings.Production.json
-*.csproj.user
-launchSettings.json
-launchSettings.http.json
-
-# Node.js (for frontend tools if any)
-/node_modules/
-npm-debug.log
-yarn-error.log
-package-lock.json
-yarn.lock
-
-# Webpack / Parcel / Vite
-/dist/
-/.cache/
-/.parcel-cache/
-
-# IDE specific
-.idea/
-*.swp
-*.swo
-*~
-.DS_Store
-.vscode/
-*.code-workspace
-
-# Database files
-*.mdf
-*.ldf
-*.db
-*.sqlite
-
-# Test results
-TestResults/
-*.trx
+# ===================
+# Archivos de coverage (pruebas)
+# ===================
 *.coverage
-*.coveragexml
+*.coverage.xml
+**/TestResults/
 
-# Logs
-*.log
-logs/
-_logs/
-
-# Backup files
-*.bak
-*.backup
-
-# Windows image file caches
-Thumbs.db
-ehthumbs.db
-
-# Mac specific
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Linux specific
-.directory
-
-# Publish profiles
-*.pubxml.user
-*.pubxml
-
-# Coverage reports
-coverage/
-*.coverage
-*.coverlet
-
-# SonarCloud/SonarQube
-.sonarqube/
-.sonar/
-
-# Certificates
-*.pfx
-*.p12
-*.cer
-
-# Generated documentation
-docs/api/
-*.xml
-
-# Environment files
-.env
-.env.*
-!.env.example
-
-# Data files (opcional - si quieres mantener el inventario.json en el repo, comenta esta línea)
-# InventarioAPI/Data/inventario.json
+# ===================
+# Archivos específicos del proyecto
+# ===================
+**/Data/clientes.xml
+**/Data/bancos.xml
+**/Data/facturas.xml
+**/Data/pagos.xml
+**/Data/saldosfavor.xml
