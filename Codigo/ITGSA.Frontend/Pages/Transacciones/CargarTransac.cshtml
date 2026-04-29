@@ -10,7 +10,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" enctype="multipart/form-data" id="uploadForm">
                 <div class="mb-3">
                     <label for="xmlFile" class="form-label">Seleccione archivo transac.xml:</label>
                     <input type="file" class="form-control" id="xmlFile" name="XmlFile" accept=".xml" required />
@@ -26,8 +26,9 @@
         <div class="mt-4">
             <div class="alert alert-info">
                 <h5>Respuesta del servidor:</h5>
-                <pre class="mb-0">@ViewData["Resultado"]</pre>
+                <pre id="xmlResponse" class="mb-0">@ViewData["Resultado"]</pre>
             </div>
+            <button id="btnDescargarXML" class="btn btn-success">Descargar Respuesta XML</button>
         </div>
     }
 
@@ -41,3 +42,22 @@
         </div>
     }
 </div>
+
+@section Scripts {
+    <script>
+        document.getElementById('btnDescargarXML')?.addEventListener('click', function() {
+            const xmlContent = document.getElementById('xmlResponse')?.innerText;
+            if (xmlContent) {
+                const blob = new Blob([xmlContent], { type: 'application/xml' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'respuesta_transac.xml';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            }
+        });
+    </script>
+}

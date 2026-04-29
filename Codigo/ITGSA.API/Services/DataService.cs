@@ -354,5 +354,47 @@ namespace ITGSA.API.Services
 
             return resultados;
         }
+        //--------------------------------------------------------------------------------------
+        // En DataService.cs agregar:
+        public (List<string> bancos, List<Dictionary<string, decimal>> datos) GetIngresosPorBanco(int mes, int anio, int cantidadMeses)
+        {
+            var pagosAplicados = XmlHelper.CargarPagos().Where(p => p.Aplicado).ToList();
+            var bancos = XmlHelper.CargarBancos();
+
+            // Obtener nombres de bancos
+            var nombresBancos = bancos.Select(b => b.Nombre).ToList();
+
+            // Calcular meses a mostrar (últimos 3 meses desde el mes elegido)
+            var mesesDatos = new List<Dictionary<string, decimal>>();
+
+            for (int i = 0; i < cantidadMeses; i++)
+            {
+                int mesActual = mes - i;
+                int anioActual = anio;
+
+                if (mesActual <= 0)
+                {
+                    mesActual += 12;
+                    anioActual--;
+                }
+
+                var ingresosPorBanco = new Dictionary<string, decimal>();
+
+                foreach (var banco in bancos)
+                {
+                    var total = pagosAplicados
+                        .Where(p => p.CodigoBanco == banco.Codigo &&
+                                    ConvertirFecha(p.Fecha).Year == anioActual &&
+                                    ConvertirFecha(p.Fecha).Month == mesActual)
+                        .Sum(p => p.Valor);
+
+                    ingresosPorBanco[banco.Nombre] = total;
+                }
+
+                mesesDatos.Add(ingresosPorBanco);
+            }
+
+            return (nombresBancos, mesesDatos);
+        }
     }
 }

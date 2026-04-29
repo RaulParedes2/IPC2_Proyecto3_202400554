@@ -1,11 +1,11 @@
 @page
 @model ITGSA.Frontend.Pages.Consultas.ResumenPagosModel
 @{
-    ViewData["Title"] = "Resumen de Ingresos";
+    ViewData["Title"] = "Resumen de Ingresos por Banco";
 }
 
 <div class="container mt-4">
-    <h2>Resumen de Ingresos</h2>
+    <h2>Consultar Ingresos por Banco</h2>
     <hr />
 
     <div class="card mb-4">
@@ -37,29 +37,42 @@
         </div>
     </div>
 
-    @if (Model.Ingresos != null && Model.Ingresos.Any())
+    @if (Model.DatosGrafica != null && Model.DatosGrafica.Any() && Model.Bancos != null && Model.Bancos.Any())
     {
         <div class="card">
             <div class="card-header bg-success text-white">
-                <h4>Ingresos - @Model.MesElegido</h4>
+                <h4>Mes elegido: @Model.MesElegido</h4>
+                <p class="mb-0">(Últimos 3 meses de forma descendente)</p>
             </div>
             <div class="card-body">
-                <canvas id="ingresosChart" width="400" height="200"></canvas>
+                <canvas id="ingresosChart" width="800" height="400"></canvas>
                 <hr />
+                
                 <div class="table-responsive mt-4">
-                    <table class="table table-striped">
+                    <table class="table table-bordered table-striped">
                         <thead>
                             <tr>
                                 <th>Mes</th>
-                                <th class="text-end">Total Ingresos</th>
+                                @foreach (var banco in Model.Bancos)
+                                {
+                                    <th class="text-center">@banco</th>
+                                }
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (var ingreso in Model.Ingresos)
+                            @for (int i = 0; i < Model.DatosGrafica.Count; i++)
                             {
                                 <tr>
-                                    <td>@ingreso.Mes</td>
-                                    <td class="text-end">Q. @ingreso.Total.ToString("N2")</td>
+                                    <td><strong>@Model.NombresMeses[i]</strong></td>
+                                    @foreach (var banco in Model.Bancos)
+                                    {
+                                        decimal valor = 0;
+                                        if (Model.DatosGrafica[i].ContainsKey(banco))
+                                        {
+                                            valor = Model.DatosGrafica[i][banco];
+                                        }
+                                        <td class="text-center">@valor.ToString("N2")</td>
+                                    }
                                 </tr>
                             }
                         </tbody>
@@ -67,7 +80,7 @@
                 </div>
             </div>
             <div class="card-footer">
-                <button id="btnPdf" class="btn btn-danger">Generar PDF</button>
+                <button id="btnPdf" class="btn btn-danger">📄 Generar PDF</button>
             </div>
         </div>
     }
@@ -82,51 +95,89 @@
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        @if (Model.Ingresos != null && Model.Ingresos.Any())
-        {
-            <text>
-                const ctx = document.getElementById('ingresosChart').getContext('2d');
-                const labels = @Html.Raw(Json.Serialize(Model.Ingresos.Select(i => i.Mes)));
-                const datos = @Html.Raw(Json.Serialize(Model.Ingresos.Select(i => i.Total)));
+        // Convertir los datos de C# a JavaScript de forma segura
+        var bancos = @Html.Raw(Json.Serialize(Model.Bancos));
+        var datosGrafica = @Html.Raw(Json.Serialize(Model.DatosGrafica));
+        var labels = @Html.Raw(Json.Serialize(Model.NombresMeses));
+        
+        if (bancos && bancos.length > 0 && datosGrafica && datosGrafica.length > 0 && labels && labels.length > 0) {
+            const ctx = document.getElementById('ingresosChart').getContext('2d');
+            const datasets = [];
+            
+            // Colores para cada banco
+            const colores = [
+                'rgba(54, 162, 235, 0.7)',
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(255, 206, 86, 0.7)',
+                'rgba(75, 192, 192, 0.7)',
+                'rgba(153, 102, 255, 0.7)',
+                'rgba(255, 159, 64, 0.7)'
+            ];
+            
+            for (let i = 0; i < bancos.length; i++) {
+                const datosBanco = [];
+                for (let j = 0; j < labels.length; j++) {
+                    let valor = 0;
+                    if (datosGrafica[j] && datosGrafica[j][bancos[i]]) {
+                        valor = datosGrafica[j][bancos[i]];
+                    }
+                    datosBanco.push(valor);
+                }
                 
-                new Chart(ctx, {
-                    type: 'bar',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Ingresos (Q)',
-                            data: datos,
-                            backgroundColor: 'rgba(40, 167, 69, 0.7)',
-                            borderColor: 'rgba(40, 167, 69, 1)',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        scales: {
-                            y: {
-                                beginAtZero: true,
-                                ticks: {
-                                    callback: function(value) {
-                                        return 'Q. ' + value.toFixed(2);
-                                    }
+                datasets.push({
+                    label: bancos[i],
+                    data: datosBanco,
+                    backgroundColor: colores[i % colores.length],
+                    borderColor: colores[i % colores.length].replace('0.7', '1'),
+                    borderWidth: 1
+                });
+            }
+            
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Ingresos (Q)'
+                            },
+                            ticks: {
+                                callback: function(value) {
+                                    return 'Q. ' + value.toFixed(2);
                                 }
                             }
                         },
-                        plugins: {
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        return 'Q. ' + context.raw.toFixed(2);
-                                    }
-                                }
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Mes'
                             }
                         }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': Q. ' + context.raw.toFixed(2);
+                                }
+                            }
+                        },
+                        legend: {
+                            position: 'top'
+                        }
                     }
-                });
-            </text>
+                }
+            });
         }
-
+        
         document.getElementById('btnPdf')?.addEventListener('click', function() {
             window.print();
         });

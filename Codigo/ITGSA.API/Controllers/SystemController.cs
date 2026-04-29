@@ -319,5 +319,27 @@ namespace ITGSA.API.Controllers
                 return fecha;
             return DateTime.MinValue;
         }
+
+        //------------------------------------------------------------------------
+        // GET: /System/devolverIngresosPorBanco?mes=3&anio=2024
+[HttpGet("devolverIngresosPorBanco")]
+public IActionResult DevolverIngresosPorBanco([FromQuery] int mes, [FromQuery] int anio)
+{
+    try
+    {
+        var ingresosPorBanco = _dataService.GetIngresosPorBanco(mes, anio, 3);
+        
+        return Ok(new
+        {
+            mesElegido = new DateTime(anio, mes, 1).ToString("MMMM/yyyy"),
+            bancos = ingresosPorBanco.bancos,
+            datos = ingresosPorBanco.datos
+        });
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
     }
 }
